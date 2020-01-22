@@ -19,9 +19,7 @@ IATE is all about boundaries
 
 In order to protect your precious business code from the delivery and persistence mechanism, we just need to set boundaries. That’s what Translators and the Adapters, while Interactors and Entities hold the business-logic code. Let’s take a look at each component in the context of an example: a transfer between accounts.
 
-| Boundary | Business Code | Boundary |
-|----------|---------------|----------| 
-| Translator | Interactor Entity | Adapter |
+![iate scheme](https://github.com/afmeirelles/iate/blob/master/structure.png)
 
 Translator: this is the component in charge of translating the message received from a delivery mechanism into the domain language of the application, e.g., an HTTP request to a json - and vice-versa. As a translator, it’s important to validate the incoming message, like checking if it comes from an authenticated source or whether the syntax is correct.
 

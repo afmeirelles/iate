@@ -8,10 +8,10 @@ This is actually an old topic. Uncle Bob is advocating for better architecture f
 
 For me, the key takeaways are:
 
-Whenever it’s possible, don’t extend frameworks. If you need one, import it and use it like any other libraries.
-Keep the delivery mechanism code separated from you business logic code.
-Keep the persistence mechanism code separated from you business logic code too.
-Structure you code by business domains.
+* Whenever it’s possible, don’t extend frameworks. If you need one, import it and use it like any other libraries.
+* Keep the delivery mechanism code separated from you business logic code.
+* Keep the persistence mechanism code separated from you business logic code too.
+* Structure you code by business domains.
 
 But how to do all of that in a way that’s easy to communicate and don’t require to write your own framework? The solution we’ve found is kind of organic and makes so much sense that it quickly settled within our team and later spread to others in the company. We named it IATE (in brazilian portuguese, it sounds exactly like “yatch”), an acronym for the key components: Translator, Interactor, Entity and Adapter.
 

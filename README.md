@@ -31,6 +31,9 @@ Entity: here you’ll find the business rules. Each step described in the intera
 
 Adapter: the component responsible for adapt the application messages (json) into the persistence layer language, e.g., json to SQL - and the other way around.
 
+So, where does it leave us?
+
+![iate scheme](https://github.com/afmeirelles/iate/blob/master/iate.png)
 
 
 

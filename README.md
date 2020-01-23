@@ -21,7 +21,45 @@ In order to protect your precious business code from the delivery and persistenc
 
 ![iate scheme](https://github.com/afmeirelles/iate/blob/master/img/sctructure.png)
 
-Translator: this is the component in charge of translating the message received from a delivery mechanism into the domain language of the application, e.g., an HTTP request to a json - and vice-versa. As a translator, it’s important to validate the incoming message, like checking if it comes from an authenticated source or whether the syntax is correct.
+Translator: this is the component in charge of translating the message received from a delivery mechanism into the domain language of the application, e.g., an HTTP request to a json - and vice-versa. As a translator, it’s important to validate the incoming message, like checking if it comes from an authenticated source or whether the syntax is correct. Let's see how it looks like in our example:
+
+    const AJV = require('ajv')
+    const jwt = require('jsonwebtoken')
+    const interactor = require('./interactor')
+
+    const ajv = new AJV()
+
+    const translator = {
+        transfer: async (req, res) => {
+            // extracts senderId from jwt. in a real application, you would verify 
+            // the signature against a secret or public key. you should check
+            // sender credentials in the translator
+            const auth = jwt.decode(req.token)
+            // this is the message the application wants and needs
+            const transferData = { ...req.body, senderId: auth.senderId }
+            // validate data
+            const schema = {
+                type: 'object',
+                required: [ 'senderId', 'beneficiaryId', 'amount' ]
+            }
+            const valid = ajv.validate(schema, transferData)
+            if (!valid) {
+                // if payload is incorrect, we return the error reason
+                res.status(400)
+                return res.json({ message: ajv.errorsText() })
+            }
+            // here we're gonna catch all errors. in a real application,
+            // you could automatically convert application errors into
+            // HTTP (or other mechanism) errors
+            try {
+                await interactor.transfer(transferData)
+                res.end()
+            } catch (error) {
+                console.log(error)
+                res.json({ message: error.message })
+            }
+        }
+    }
 
 Interactor: the component in which the business logic resides. It is pretty much the same as the Controller in MVC, but there’s only domain-related code in here. In the interactor, you’ll probably find yourself writing the same as you would in a use case.
 

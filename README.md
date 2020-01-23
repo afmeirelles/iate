@@ -41,15 +41,21 @@ So, where does it leave us?
 
 ![iate scheme](https://github.com/afmeirelles/iate/blob/master/img/iate.png)
 
-
-
-
-
+If you look closely, it would be easy to change this application to get data from the console and save it into a cloud service, for example. You can do it by writing a new translator and a new adapter; you don't need to touch you business-related code, it'll will work the same way!
 
 -------
-Don’t extend frameworks.
+
+To sum up, let's check if IATE fulfills the key takeaways from Uncle Bob's talk:
+
+* Don’t extend frameworks.
 IATE is not a framework, you don’t have to marry it; it’s just a way of structuring your code. You’ll not find any npm packages do import neither it tells you what to use. In fact, IATE makes it easier to move from - for example - restify to express, express to lambda functions connectors etc. The same is valid for the persistence layer.
 
+* Keep the delivery mechanism code separated from you business logic code.
+* Keep the persistence mechanism code separated from you business logic code too.
+That's the sole role of Translators and Adapters: they're the boundaries that keep your business rules safe and warm.
+
+* Structure you code by business domains.
+This has nothing to do with IATE, but we got used to keep all files regarding a resource in the same folder. This makes it WAY easier to find the files you need to work on.
 
 
 

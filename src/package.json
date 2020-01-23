@@ -1,0 +1,33 @@
+{
+  "name": "iate",
+  "version": "1.0.0",
+  "description": "IATE architecture showcase",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "request": "curl -X POST  http://localhost:3003/transfer  -H 'Accept: */*'  -H 'Accept-Encoding: gzip, deflate'  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwic2VuZGVySWQiOiJzZW5kZXIzMjFJRCIsImlhdCI6MTUxNjIzOTAyMn0.d9cxPSjxFJ7yjruStTIpzm7lbzORvmbU3BqNDKgRp9M'  -H 'Content-Type: application/json'  -d '{\"beneficiaryId\": \"ben321ID\",\"amount\": 1}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afmeirelles/iate.git"
+  },
+  "keywords": [
+    "iate",
+    "clean",
+    "architecture"
+  ],
+  "author": "André Meirelles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/afmeirelles/iate/issues"
+  },
+  "homepage": "https://github.com/afmeirelles/iate#readme",
+  "dependencies": {
+    "ajv": "^6.11.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-bearer-token": "^2.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15"
+  }
+}
